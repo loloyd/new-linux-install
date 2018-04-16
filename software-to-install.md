@@ -1,25 +1,39 @@
 # Core
 
-Install
+## Install from Software Manager
+
+  Gnome-commander
+  Audacious
+
+## Install from own websites
+
+  TeamViewer https://www.teamviewer.com/en/download/linux/
+
   flite for text-reader/dictation
-  audacious
   rclone
-  teamviewer
   
 # Preferential
 
-Install
+## Install from Software Manager
+
+  KPatience/kpat
+  Wine
+
   VirtualBox
-  vlc
-  kpatience/kpat
-  vivaldi
-  Ulracopier
+
+## Install from own websites
+
+  Vivaldi https://vivaldi.com/download/
+
+  Ultracopier
   qBittorrent
-
-# Verify
-
-Install
-  libreoffice
-  firefox
   Chrome
   chromium
+
+# Verify, may depend on Linux Mint installation settings
+
+Install
+  LibreOffice
+  Firefox
+  VLC
+
