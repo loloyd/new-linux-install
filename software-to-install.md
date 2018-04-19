@@ -11,28 +11,27 @@
 
   flite for text-reader/dictation
   rclone
-  
+
 # Preferential
 
 ## Install from Software Manager
 
   KPatience/kpat
   Wine
+  Chromium
 
   VirtualBox
 
 ## Install from own websites
 
   Vivaldi https://vivaldi.com/download/
+  Chrome https://www.google.com/chrome/
 
   Ultracopier
   qBittorrent
-  Chrome
-  chromium
 
 # Verify, may depend on Linux Mint installation settings
 
-Install
   LibreOffice
   Firefox
   VLC
