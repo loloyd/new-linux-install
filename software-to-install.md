@@ -36,3 +36,20 @@
   Firefox
   VLC
 
+# Server Setup
+
+## Install from Software Manager
+
+  Webmin
+  PHP (7)
+  Apache (2.4)
+
+  Follow guide to make PHP work with Apache from 
+    http://www.ubuntugeek.com/install-apache2-with-php-7-support-in-ubuntu-16-04-server.html
+  Add the following directives in /etc/apache2/sites-available/000-default.conf
+IndexOptions FancyIndexing ScanHTMLTitles IconsAreLinks FoldersFirst
+Alias /loloyd/ /home/loloyd/www/
+<Directory /home/loloyd/www/>
+    Options Indexes FollowSymLinks MultiViews
+    Require all granted
+</Directory>
