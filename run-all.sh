@@ -53,41 +53,44 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   mkdir ~/nli/mounts
 fi
 
-## Create mount points
+## Create mount points.  https://www.tldp.org/LDP/Linux-Filesystem-Hierarchy/html/mnt.html says
+## /mnt should be used for local issue (device level) mounting.  Volatile network mounts can therefore be implemented
+## elsewhere.
 
 echo "NLI: Create mount point folders? [y/n]"
 read OPTION_YN
 if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
-  echo "NLI: Creating mount points..."
-  if [ "$OPTION_PROFILE" -eq 1 ]; then
-    sudo mkdir /mnt/video100
-    sudo mkdir /mnt/photos100
-    sudo mkdir /mnt/audio100
-    sudo mkdir /mnt/restricted100
-  elif [ "$OPTION_PROFILE" -eq 2 ]; then
-    sudo mkdir /mnt/ldnas138-vault
-    sudo mkdir /mnt/ldnas138-media
-    sudo mkdir /mnt/ldnas138-zaux
+  echo "NLI: Creating mount point folders..."
+  if [ "$OPTION_PROFILE" -eq 3 -o "$OPTION_PROFILE" -eq 1 ]; then
+    mkdir ~/nli/mounts/home-nas1-audio
+    mkdir ~/nli/mounts/home-nas1-photos
+    mkdir ~/nli/mounts/home-nas1-restricted
+    mkdir ~/nli/mounts/home-nas1-video
+  fi
+  if [ "$OPTION_PROFILE" -eq 2 -o "$OPTION_PROFILE" -eq 1 ]; then
+    mkdir ~/nli/mounts/office-nas1-media
+    mkdir ~/nli/mounts/office-nas1-revault
+    mkdir ~/nli/mounts/office-nas1-zaux
   fi
 fi
 
-## Create easy access linked mount points
+## Create easy access linked mount points (deprecated)
 
-echo "NLI: Create easy access linked mount points? [y/n]"
-read OPTION_YN
-if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
-  echo "NLI: Creating easy access linked mount points..."
-  if [ "$OPTION_PROFILE" -eq 1 ]; then
-    ln -s /mnt/video100 ~/nli/mounts/video100
-    ln -s /mnt/photos100 ~/nli/mounts/photos100
-    ln -s /mnt/audio100 ~/nli/mounts/audio100
-    ln -s /mnt/restricted100 ~/nli/mounts/restricted100
-  elif [ "$OPTION_PROFILE" -eq 2 ]; then
-    ln -s /mnt/ldnas138-vault ~/nli/mounts/ldnas138-vault
-    ln -s /mnt/ldnas138-media ~/nli/mounts/ldnas138-media
-    ln -s /mnt/ldnas138-zaux ~/nli/mounts/ldnas138-zaux
-  fi
-fi
+#echo "NLI: Create easy access linked mount points? [y/n]"
+#read OPTION_YN
+#if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
+#  echo "NLI: Creating easy access linked mount points..."
+#  if [ "$OPTION_PROFILE" -eq 1 ]; then
+#    ln -s /mnt/video100 ~/nli/mounts/video100
+#    ln -s /mnt/photos100 ~/nli/mounts/photos100
+#    ln -s /mnt/audio100 ~/nli/mounts/audio100
+#    ln -s /mnt/restricted100 ~/nli/mounts/restricted100
+#  elif [ "$OPTION_PROFILE" -eq 2 ]; then
+#    ln -s /mnt/ldnas138-vault ~/nli/mounts/ldnas138-vault
+#    ln -s /mnt/ldnas138-media ~/nli/mounts/ldnas138-media
+#    ln -s /mnt/ldnas138-zaux ~/nli/mounts/ldnas138-zaux
+#  fi
+#fi
 
 ## Create network shares mounting script
 
@@ -95,27 +98,32 @@ echo "NLI: Create network shares mounting script? [y/n]"
 read OPTION_YN
 if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   echo "NLI: network shares mounting script..."
-  if [ "$OPTION_PROFILE" -eq 1 ]; then
-    echo "NLI: Input the username for mounting LD NAS 100..."
+  if [ "$OPTION_PROFILE" -eq 1 -o "$OPTION_PROFILE" -eq 3 ]; then
+    echo "NLI: Input the fixed IP address of home-nas1:"
+    read OPTION_IPADDRESS
+    echo "NLI: Input the username for mounting home-nas1:"
     read OPTION_USERNAME
-    echo "NLI: Input the password of $OPTION_USERNAME for mounting LD NAS 100..."
+    echo "NLI: Input the password of $OPTION_USERNAME for mounting home-nas1:"
     read OPTION_PASSWORD
-    touch ~/nli/mounts/mount100.sh
-    printf "sudo mount -t cifs //192.168.1.100/Video /mnt/video100 -o guest,rw,uid=1000,gid=1000,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777\n" >> ~/nli/mounts/mount100.sh
-    printf "sudo mount -t cifs //192.168.1.100/Photos /mnt/photos100 -o guest,rw,uid=1000,gid=1000,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777\n" >> ~/nli/mounts/mount100.sh
-    printf "sudo mount -t cifs //192.168.1.100/Audio /mnt/audio100 -o guest,rw,uid=1000,gid=1000,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777\n" >> ~/nli/mounts/mount100.sh
-    printf "sudo mount -t cifs //192.168.1.100/Restricted /mnt/restricted100 -o rw,uid=1000,gid=1000,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777,username=$OPTION_USERNAME,password=$OPTION_PASSWORD\n" >> ~/nli/mounts/mount100.sh
-    chmod a+x ~/nli/mounts/mount100.sh
-  elif [ "$OPTION_PROFILE" -eq 2 ]; then
-    echo "NLI: Input the username for mounting LD NAS 138..."
+    touch ~/nli/mounts/mount-home-nas1.sh
+    printf "sudo mount -t cifs //$OPTION_IPADDRESS/Audio ~/nli/mounts/home-nas1-audio -o guest,rw,uid=1000,gid=1000,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777\n" >> ~/nli/mounts/mount-home-nas1.sh
+    printf "sudo mount -t cifs //$OPTION_IPADDRESS/Photos ~/nli/mounts/home-nas1-photos -o guest,rw,uid=1000,gid=1000,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777\n" >> ~/nli/mounts/mount-home-nas1.sh
+    printf "sudo mount -t cifs //$OPTION_IPADDRESS/Restricted ~/nli/mounts/home-nas1-restricted -o rw,uid=1000,gid=1000,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777,username=$OPTION_USERNAME,password=$OPTION_PASSWORD\n" >> ~/nli/mounts/mount-home-nas1.sh
+    printf "sudo mount -t cifs //$OPTION_IPADDRESS/Video ~/nli/mounts/home-nas1-video -o guest,rw,uid=1000,gid=1000,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777\n" >> ~/nli/mounts/mount-home-nas1.sh
+    chmod a+x ~/nli/mounts/mount-home-nas1.sh
+  fi
+  if [ "$OPTION_PROFILE" -eq 1 -o "$OPTION_PROFILE" -eq 2 ]; then
+    echo "NLI: Input the fixed IP address of office-nas1:"
+    read OPTION_IPADDRESS
+    echo "NLI: Input the username for mounting office-nas1:"
     read OPTION_USERNAME
-    echo "NLI: Input the password of $OPTION_USERNAME for mounting LD NAS 138..."
+    echo "NLI: Input the password of $OPTION_USERNAME for mounting office-nas1"
     read OPTION_PASSWORD
-    touch ~/nli/mounts/mountldnas138.sh
-    printf "sudo mount -t cifs //192.168.10.138/revault /mnt/ldnas138-revault -o username=$OPTION_USERNAME,password=$OPTION_PASSWORD,vers=2.0\n" >> ~/nli/mounts/mountldnas138.sh
-    printf "sudo mount -t cifs //192.168.10.138/media /mnt/ldnas138-media -o username=$OPTION_USERNAME,password=$OPTION_PASSWORD,vers=2.0\n" >> ~/nli/mounts/mountldnas138.sh
-    printf "sudo mount -t cifs //192.168.10.138/zaux /mnt/ldnas138-zaux -o username=$OPTION_USERNAME,password=$OPTION_PASSWORD,vers=2.0\n" >> ~/nli/mounts/mountldnas138.sh
-    chmod a+x ~/nli/mounts/mountldnas138.sh
+    touch ~/nli/mounts/mount-office-nas1.sh
+    printf "sudo mount -t cifs //$OPTION_IPADDRESS/media ~/nli/mounts/office-nas1-media -o username=$OPTION_USERNAME,password=$OPTION_PASSWORD,vers=2.0\n" >> ~/nli/mounts/mount-office-nas1.sh
+    printf "sudo mount -t cifs //$OPTION_IPADDRESS/revault ~/nli/mounts/office-nas1-revault -o username=$OPTION_USERNAME,password=$OPTION_PASSWORD,vers=2.0\n" >> ~/nli/mounts/mount-office-nas1.sh
+    printf "sudo mount -t cifs //$OPTION_IPADDRESS/zaux ~/nli/mounts/office-nas1-zaux -o username=$OPTION_USERNAME,password=$OPTION_PASSWORD,vers=2.0\n" >> ~/nli/mounts/mount-office-nas1.sh
+    chmod a+x ~/nli/mounts/mount-office-nas1.sh
   fi
 fi
 
