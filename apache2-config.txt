@@ -1,0 +1,61 @@
+# Apache2 configuration directives, customized by Loloy D
+# The following directives are custom built by LD TechnoLogics for
+# the regular use case.  Some directives may need to be edited
+# for suitability to localized use cases.  For quick applicability,
+# replace all "user1" instances with appropriate "username".
+# Designed with the following environment:
+# Linux Mint 18.3, Apache 2.4
+#
+# Instructions:
+# 1. Issue the following console command to define apache2 webserver user passwords
+#    (Note: the necessary subpaths may need to be created beforehand):
+# $ sudo htpasswd -c /usr/local/apache/passwd/passwords user1
+# 2. Append the #LD custom directives to /etc/apache2/apache2.conf
+# 3. Restart apache2 service by issuing:
+# $ service apache2 restart
+# 4. Optional: copy ./root/var/www/html/* to the local /var/www/html/.
+
+# Start of LD custom directives
+Alias "/video" "/home/user1/Videos"
+<Directory "/home/user1/Videos">
+    Options +Indexes
+    Require all granted
+</Directory>
+
+Alias "/audio" "/home/user1/Music"
+<Directory "/home/user1/Music">
+    Options +Indexes
+    Require all granted
+</Directory>
+
+Alias "/download" "/home/user1/Downloads"
+<Directory "/home/user1/Downloads">
+    Options +Indexes
+    Require all granted
+</Directory>
+
+Alias "/zaux" "/home/user1/.zaux"
+<Directory "/home/user1/.zaux">
+    Options +Indexes
+    AuthType Basic
+    AuthName "Access Controlled"
+    AuthBasicProvider file
+    AuthUserFile "/usr/local/apache/passwd/passwords"
+    Require valid-user
+    #Require valid-user - applies to all users defined in AuthUserFile
+    #To restrict to particular users only, use the line below instead
+    #Require user user1 user2 user3
+</Directory>
+
+Alias "/user1" "/home/user1"
+<Directory "/home/user1">
+    Options +Indexes
+    AuthType Basic
+    AuthName "Access Controlled"
+    AuthBasicProvider file
+    AuthUserFile "/usr/local/apache/passwd/passwords"
+    Require valid-user
+    #Require valid-user - applies to all users defined in AuthUserFile
+    #To restrict to particular users only, use the line below instead
+    #Require user user1 user2 user3
+</Directory>
