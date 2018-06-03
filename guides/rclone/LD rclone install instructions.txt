@@ -1,0 +1,20 @@
+Installation instructions for rclone for using with Google Drive syncing with Linux-based machines like Linux Mint.
+
+Download latest rclone from this site: https://rclone.org/drive/
+
+1. $ curl https://rclone.org/install.sh | sudo bash
+
+(deprecated information follows)
+===
+First copy the single rclone binary executable to /usr/bin
+
+$ cd rclone-v1.37-linux-amd64/
+$ sudo cp rclone /usr/bin
+===
+
+2. Run the initial config for rclone.  This will store your settings in /home/user/.config/rclone/rclone.conf
+
+$ rclone config
+
+It is advisable to use "gd" as the remote name to make referencing to the remote GoogleDrive easier and faster.  It is OK to make two names referencing the same remote GoogleDrive, such as "gd" and "GoogleDrive".
+

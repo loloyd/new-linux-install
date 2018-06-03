@@ -1,10 +1,12 @@
+#!/bin/bash
 # Show welcome, introduction and offer menu
 
-echo "NLI: LD New Linux Mint Installation (release date 201804)"
+echo "NLI: LD New Linux Mint Installation (release date 201805)"
 echo "NLI: This script is going to update this Linux Mint installation and"
 echo "NLI: customize the personal profile according to the following option:"
-echo "NLI: 1. Use home profile"
+echo "NLI: 1. Use home+office portable profile"
 echo "NLI: 2. Use office profile"
+echo "NLI: 3. Use home profile"
 read OPTION_PROFILE
 
 # Update the system
@@ -18,11 +20,6 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   echo "NLI: + apt-get upgrade"
   sudo apt-get upgrade
 fi
-
-# Change to home directory
-
-echo "NLI: + cd"
-cd
 
 # Append favorites to .bashrc
 
@@ -39,14 +36,11 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   printf "bind \"TAB:menu-complete\"; bind \"set show-all-if-ambiguous on\"\n" >> .bashrc
 fi
 
-# Create new-linux-install nli folder
+# Apply custom folder tree structure
+./run-part-apply-custom-folder-tree-structure.sh
 
-echo "NLI: Create ~/nli folder? [y/n]"
-read OPTION_YN
-if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
-  echo "NLI: + mkdir ~/nli"
-  mkdir ~/nli
-fi
+# Apply custom folder tree structure addendum
+./run-part-apply-custom-folder-tree-structure-addendum.sh
 
 # Create an easy mount utility for network shares that you normally/usually use
 
@@ -124,6 +118,12 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
     chmod a+x ~/nli/mounts/mountldnas138.sh
   fi
 fi
+
+# Install rclone
+./run-part-install-rclone.sh
+
+# Install apache2
+./run-part-install-apache2.sh
 
 # To be added soon - rclone installation and other half-baked automations
 #if [ "$OPTION_PROFILE" -eq 1 ]; then

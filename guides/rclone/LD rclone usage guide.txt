@@ -1,0 +1,26 @@
+Usage guide for rclone for Google Drive syncing with Linux-based machines like Linux Mint.
+
+Actual use case examples:
+
+$ rclone copy /home/loloyd/GoogleDrive/Linux\ Mint gd:Linux\ Mint
+
+1. To copy a local directory to a drive directory called backup
+
+$ rclone copy /home/source <remote-name>:backup
+$ rclone copy /home/loloyd/GoogleDrive/Projects gd:Projects
+
+2. List directories in top level of your remote drive
+
+$ rclone lsd <remote-name>:
+$ rclone lsd GoogleDrive:
+$ rclone lsd gd:
+
+3. List all the files in your drive recursively
+
+$ rclone ls <remote-name>:
+$ rclone ls GoogleDrive:
+$ rclone ls gd:
+
+===
+
+rclone copy gd:PSA /home/loloyd/GoogleDrive/PSA
