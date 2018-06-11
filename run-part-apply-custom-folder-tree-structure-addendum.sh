@@ -25,8 +25,8 @@ read OPTION_YN
 if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   echo "NLI: Creating easy access user home links to nli subpaths..."
   ln -s ~/nli/store/googledrive ~/GoogleDrive
-  ln -s ~/nli/psa-cdr ~/PSA-CDR
-  ln -s ~/nli/psa-cdr/drive-sqad ~/Drive-SQAD
-  ln -s ~/nli/psa-cdr/synologydrive ~/SynologyDrive
+  ln -s ~/nli/store/psa-cdr ~/PSA-CDR
+  ln -s ~/nli/store/psa-cdr/drive-sqad ~/Drive-SQAD
+  ln -s ~/nli/store/psa-cdr/synologydrive ~/SynologyDrive
 fi
 
