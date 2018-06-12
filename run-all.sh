@@ -97,3 +97,5 @@ fi
 #elif [ "$OPTION_PROFILE" -eq 2 ]; then
 #fi
 
+# Install Webmin
+./run-part-install-webmin.sh
