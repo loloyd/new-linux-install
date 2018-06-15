@@ -86,6 +86,9 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   fi
 fi
 
+# Install Atom
+./run-part-install-atom.sh
+
 # Install Sublime
 ./run-part-install-sublime.sh
 
@@ -95,10 +98,7 @@ fi
 # Install apache2
 ./run-part-install-apache2.sh
 
-# To be added soon - rclone installation and other half-baked automations
-#if [ "$OPTION_PROFILE" -eq 1 ]; then
-#elif [ "$OPTION_PROFILE" -eq 2 ]; then
-#fi
-
 # Install Webmin
 ./run-part-install-webmin.sh
+
+# To be added soon - other half-baked automations
