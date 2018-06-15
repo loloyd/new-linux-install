@@ -86,6 +86,9 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   fi
 fi
 
+# Install Sublime
+./run-part-install-sublime.sh
+
 # Install rclone
 ./run-part-install-rclone.sh
 
