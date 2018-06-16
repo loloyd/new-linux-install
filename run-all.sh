@@ -43,6 +43,7 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
     mkdir ~/nli/mounts/home-nas1-photos
     mkdir ~/nli/mounts/home-nas1-restricted
     mkdir ~/nli/mounts/home-nas1-video
+    mkdir ~/nli/mounts/ldtpe
   fi
   if [ "$OPTION_PROFILE" -eq 2 -o "$OPTION_PROFILE" -eq 1 ]; then
     mkdir ~/nli/mounts/office-nas1-media
@@ -70,7 +71,15 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
     printf "sudo mount -t cifs //$OPTION_IPADDRESS/Restricted ~/nli/mounts/home-nas1-restricted -o rw,uid=1000,gid=1000,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777,username=$OPTION_USERNAME,password=$OPTION_PASSWORD\n" >> ~/nli/mounts/mount-home-nas1.sh
     printf "sudo mount -t cifs //$OPTION_IPADDRESS/Video ~/nli/mounts/home-nas1-video -o guest,rw,uid=1000,gid=1000,nounix,iocharset=utf8,file_mode=0777,dir_mode=0777\n" >> ~/nli/mounts/mount-home-nas1.sh
     chmod a+x ~/nli/mounts/mount-home-nas1.sh
+    echo "NLI: Input the fixed IP address of ldtpe:"
+    read OPTION_IPADDRESS
+    echo "NLI: Input the username for sshfs to ldtpe:"
+    read OPTION_USERNAME
+    touch ~/nli/mounts/mount-sshfs-ldtpe.sh
+    printf "sshfs $OPTION_USERNAME@OPTION_IPADDRESS: ~/nli/mounts/ldtpe/" >> ~/nli/mounts/mount-sshfs-ldtpe.sh
+    chmod a+x ~/nli/mounts/mount-sshfs-ldtpe.sh
   fi
+    
   if [ "$OPTION_PROFILE" -eq 1 -o "$OPTION_PROFILE" -eq 2 ]; then
     echo "NLI: Input the fixed IP address of office-nas1:"
     read OPTION_IPADDRESS
@@ -85,6 +94,9 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
     chmod a+x ~/nli/mounts/mount-office-nas1.sh
   fi
 fi
+
+# Install sshfs
+./run-part-install-sshfs.sh
 
 # Install xmlstarlet
 ./run-part-install-xmlstarlet.sh
