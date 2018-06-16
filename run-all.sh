@@ -86,6 +86,9 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   fi
 fi
 
+# Install xmlstarlet
+./run-part-install-xmlstarlet.sh
+
 # Install Atom
 ./run-part-install-atom.sh
 
@@ -100,5 +103,8 @@ fi
 
 # Install Webmin
 ./run-part-install-webmin.sh
+
+# Install rfr (remove-from-recents)
+./run-part-install-rfr.sh
 
 # To be added soon - other half-baked automations
