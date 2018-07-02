@@ -71,6 +71,52 @@
 
   Ultracopier
 
+# Troubleshooting
+
+Based on https://www.linuxmint.com/rel_tara_mate.php
+
+## Touchpad drivers
+
+The default touchpad driver in this edition is "libinput" (provided by the xserver-xorg-input-libinput package).
+
+If you experience problems with it, you can switch to another driver called "synaptics" (provided by the xserver-xorg-input-synaptics package).
+
+To know which driver is used by your input devices, run the following command:
+
+    grep -i "Using input driver" /var/log/Xorg.0.log
+
+When both drivers are installed, "synaptics" takes priority.
+
+To switch to the "synaptics" driver, install it with the command:
+
+    apt install xserver-xorg-input-synaptics
+
+Then log out and log back in.
+
+To go back to using "libinput", simply remove the "synaptics" driver:
+
+    apt remove xserver-xorg-input-synaptics
+
+Then log out and log back in.
+
+Note: You can also try installing the "evdev" driver (provided by the xserver-xorg-input-evdev).
+
+## Sound and microphone issues
+
+If you're facing issues with your microphone or your sound output, please install "pavucontrol".
+
+This will add "PulseAudio Volume Control" to your menu. This application has more configuration options than the default volume control.
+
+## DVD Playback with VLC
+
+If VLC does not find your DVD player, click on Media->Open Disc, and specify '/dev/sr0' as the disc device.
+
+## Issues with KDE apps
+
+If you're experiencing issues with KDE apps (Okular, Gwenview, KStars..etc) run the following command:
+
+    apt install kdelibs-bin kdelibs5-data kdelibs5-plugins
+
 # Verify, may depend on Linux Mint installation settings
 
   LibreOffice
@@ -94,3 +140,4 @@ Alias /loloyd/ /home/loloyd/www/
     Options Indexes FollowSymLinks MultiViews
     Require all granted
 </Directory>
+
