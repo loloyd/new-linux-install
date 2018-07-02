@@ -4,6 +4,14 @@
 
   Gnome-commander
   Audacious
+  Audacity
+  Htop
+  TreeSheets
+  PlayOnLinux
+  DuplicateKiller https://github.com/loloyd/duplicatekiller.git
+  SQLiteMan
+  DB Browser for SQLite
+  
 
 ## Install from own websites
 
@@ -14,12 +22,46 @@
 
 # Preferential
 
+## Installed from new-linux-install https://github.com/loloyd/new-linux-install.git
+
+  atom
+  rclone
+  rclone
+  remove-from-recents (rfr)
+  sshfs
+  sublime
+  webmin
+  xmlstarlet
+
 ## Install from Software Manager
 
   KPatience/kpat
   Wine
   Chromium
-
+  Chrome Remote Desktop
+  drumbit (online music sequencer, pattern player and recorder)
+  FreePlane (mind mapping)
+  Gydl (download from Youtube)
+  Inkscape
+  KSimond
+  KSudoku
+  LMMS
+  Maps
+  Manual in X Window
+  OpenShot Video Editor
+  qBittorrent
+  Sam
+  Samba (? may not be needed anymore)
+  Shotwell Photo Organizer
+  Simon Speech Recognition and Model Manager
+  Simond
+  Slack
+  Solitaire
+  Sound Recorder
+  SSC
+  SSCd
+  Viber
+  VYM (View Your Mind mind mapping)
   VirtualBox
 
 ## Install from own websites
@@ -28,7 +70,6 @@
   Chrome https://www.google.com/chrome/
 
   Ultracopier
-  qBittorrent
 
 # Verify, may depend on Linux Mint installation settings
 
