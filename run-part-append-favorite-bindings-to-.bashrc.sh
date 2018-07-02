@@ -10,6 +10,9 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   echo "NLI: + alias las='ls -las'"
   printf "alias las='ls -las'\n" >> ~/.bashrc
   printf "\n" >> ~/.bashrc
+  echo "NLI: + alias lat='ls -lat'"
+  printf "alias lat='ls -lat'\n" >> ~/.bashrc
+  printf "\n" >> ~/.bashrc
   echo "NLI: + bind \"TAB:menu-complete\"; bind \"set show-all-if-ambiguous on\"\n"
   printf "bind \"TAB:menu-complete\"; bind \"set show-all-if-ambiguous on\"\n" >> ~/.bashrc
 fi
