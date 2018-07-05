@@ -21,8 +21,8 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   sudo apt upgrade
 fi
 
-# Append favorite bindings to .bashrc
-./run-part-append-favorite-bindings-to-.bashrc.sh
+# Append favorite bindings to .bash_aliases
+./run-part-append-favorite-bindings-to-.bash_aliases.sh
 
 # Apply custom folder tree structure
 ./run-part-apply-custom-folder-tree-structure.sh
