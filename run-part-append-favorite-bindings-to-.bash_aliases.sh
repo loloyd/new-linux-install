@@ -15,6 +15,14 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   printf "\n" >> ~/.bash_aliases
   echo "NLI: + alias lat='ls -lat'"
   printf "alias lat='ls -lat'\n" >> ~/.bash_aliases
+  echo "NLI: + alias cls='clear'"
+  printf "alias cls='clear'\n" >> ~/.bash_aliases
+  echo "NLI: + alias h.='history'"
+  printf "alias h.='history'\n" >> ~/.bash_aliases
+  echo "NLI: + alias hf='history | grep $1'"
+  printf "alias hf='history | grep $1'\n" >> ~/.bash_aliases
+  echo "NLI: + alias pf='ps -e | grep $1'"
+  printf "alias pf='ps -e | grep $1'\n" >> ~/.bash_aliases
   printf "\n" >> ~/.bash_aliases
   echo "NLI: + bind \"TAB:menu-complete\"; bind \"set show-all-if-ambiguous on\"\n"
   printf "bind \"TAB:menu-complete\"; bind \"set show-all-if-ambiguous on\"\n" >> ~/.bash_aliases
