@@ -1,8 +1,9 @@
 #!/bin/bash
 # Install xmlstarlet
 
-echo "NLI: Install xmlstarlet now? [y/n]"
-read OPTION_YN
+echo ""
+echo "NLI: ========================================"
+read -p "NLI: Install xmlstarlet now? [y/n] " OPTION_YN
 if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   sudo apt update -y
   sudo apt install -y xmlstarlet

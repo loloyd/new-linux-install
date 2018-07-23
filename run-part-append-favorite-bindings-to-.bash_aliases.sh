@@ -1,8 +1,9 @@
 #!/bin/bash
 # Append favorite bindings to .bash_aliases
 
-echo "NLI: Append favorite bindings to .bash_aliases? [y/n]"
-read OPTION_YN
+echo ""
+echo "NLI: ========================================"
+read -p "NLI: Append favorite bindings to .bash_aliases? [y/n] " OPTION_YN
 if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   if [ ! -f ~/.bash_aliases ]; then
     touch ~/.bash_aliases
@@ -27,4 +28,3 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
   echo "NLI: + bind \"TAB:menu-complete\"; bind \"set show-all-if-ambiguous on\"\n"
   printf "bind \"TAB:menu-complete\"; bind \"set show-all-if-ambiguous on\"\n" >> ~/.bash_aliases
 fi
-
