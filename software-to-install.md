@@ -61,13 +61,16 @@
   SSC
   SSCd
   Viber
+  VMG Virtual Magnifying Glass
   VYM (View Your Mind mind mapping)
   VirtualBox
 
 ## Install from own websites
 
+  VMG Virtual Magnifying Glass http://magnifier.sourceforge.net/#download
   Vivaldi https://vivaldi.com/download/
   Chrome https://www.google.com/chrome/
+  yEd diagramming https://www.yworks.com/downloads#yEd
 
   Ultracopier
 
