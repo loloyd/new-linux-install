@@ -51,7 +51,7 @@ if [ "$OPTION_YN" == "Y" ] || [ "$OPTION_YN" == "y" ]; then
     chmod a+x ~/nli/mounts/mount-host-Drive-SQAD.sh
     echo "NLI: Creating ~/nli/mounts/mount-host-SynologyDrive.sh"
     touch ~/nli/mounts/mount-host-SynologyDrive.sh
-    printf "sudo mount -t vboxsf Drive-SQAD ~/nli/mounts/host-SynologyDrive\n" >> ~/nli/mounts/mount-host-SynologyDrive.sh
+    printf "sudo mount -t vboxsf SynologyDrive ~/nli/mounts/host-SynologyDrive\n" >> ~/nli/mounts/mount-host-SynologyDrive.sh
     chmod a+x ~/nli/mounts/mount-host-SynologyDrive.sh
     echo "NLI: Creating ~/nli/mounts/mount-host-C_Drive.sh"
     touch ~/nli/mounts/mount-host-C_Drive.sh
